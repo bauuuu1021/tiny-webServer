@@ -1,3 +1,9 @@
+/*
+* Define ip address at the beginning of the file
+*  to ease modification
+ */
+#define IP_ADDR "127.0.0.1"
+
 /* 
  * Updated 8/14 droh: 
  *   - open_clientfd and open_listenfd are now reentrant and protocol
@@ -977,7 +983,7 @@ int open_listenfd(char *port)
     hints.ai_flags = AI_PASSIVE;      /* ... on any IP address */
     hints.ai_flags |= AI_NUMERICSERV; /* ... using a numeric port arg. */
     hints.ai_flags |= AI_ADDRCONFIG;  /* Recommended for connections */
-    Getaddrinfo(NULL, port, &hints, &listp);
+    Getaddrinfo(IP_ADDR, port, &hints, &listp);
 
     /* Walk the list for one that we can bind to */
     for (p = listp; p; p = p->ai_next) {
